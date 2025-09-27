@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --sidebar-width: 280px;
+    --bg: #000;
+    --panel: #121212;
+    --panel-2: #181818;
+    --muted: #B7B3B6;
+    --spot: #1DB954;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ====== LAYOUT PRINCIPAL ====== */
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: var(--bg);
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* o scroll vai ficar dentro do main */
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    min-height: 0; /* importante para permitir overflow dos filhos flex */
+    width: 100%;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--panel);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 1px solid #282828;
+}
+
+.nav-logo i {
+    font-size: 30px;
+    color: var(--spot);
+    margin-bottom: 20px;
+}
+
+.nav-library {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.nav-library i { font-size: 16px; color: #bdbdbd; }
+.nav-library p { color: #d9d9d9; }
+.nav-library:hover {
+    color: #fff;
+}
+
+.nav-playlist,
+.nav-podcast {
+    background-color: #242424;
+    padding: 16px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.12s;
+}
+.nav-playlist:hover,
+.nav-podcast:hover {
+    background-color: #2a2a2a;
+    transform: translateY(-2px);
+}
+
+.nav-playlist button,
+.nav-podcast button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 8px 14px;
+    margin-top: 12px;
+    font-size: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.nav-playlist p,
+.nav-podcast p { color: #b7b3b6; margin-top: 8px; font-size: 13px; }
+
+.nav-footer {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.nav-footer a {
+    color: #a7a7a7;
+    text-decoration: none;
+    font-size: 11px;
+}
+.nav-footer a:hover { text-decoration: underline; }
+
+.nav-lang-button {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 14px;
+    margin-top: 6px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 12px;
+    transition: background 0.2s, color 0.2s;
+}
+.nav-lang-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* ========== MAIN (OCUPA TODO O RESTANTE) ======== */
+main {
+    flex: 1;               /* ocupa todo o espaço restante */
+    min-width: 0;          /* essencial para evitar overflow do grid em flexbox */
+    min-height: 0;         /* essencial para permitir scroll interno */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;      /* scroll dentro do main */
+    background: transparent;
+    padding: 0 28px 140px; /* espaço para o banner fixo */
+}
+
+/* cabeçalho fixo dentro do main */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 12px;
+    background: rgba(18,18,18,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+/* quando rolar, acrescenta mais contraste (classe adicionada por JS) */
+.header.scrolled {
+    background: rgba(12,12,12,1);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+}
+
+/* setinhas */
+.nav-arrows {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.nav-arrows button {
+    background: #0a0a0a;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-grid;
+    place-items: center;
+    transition: background 0.2s, transform 0.12s;
+}
+.nav-arrows button:hover {
+    background: #2a2a2a;
+    transform: translateY(-1px);
+}
+
+/* busca central */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #242424;
+    padding: 8px 16px;
+    border-radius: 20px;
+    width: 520px;
+    max-width: 60%;
+    margin: 0 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+.search-bar i { color: #bdbdbd; }
+.search-bar input {
+    background-color: transparent;
+    border: none;
+    color: #eaeaea;
+    margin-left: 12px;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+}
+
+/* botoes de ação no header */
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.login-btn {
+    background: transparent;
+    border: none;
+    color: #b3b3b3;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+.login-btn:hover { color: #fff; transform: translateY(-1px); }
+.signup-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.18s, transform 0.12s;
+}
+.signup-btn:hover {
+    background: var(--spot);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+/* ========== CONTEÚDO ======== */
+.content {
+    flex: 1;                 /* ocupa todo o espaço disponível do main */
+    width: 100%;
+    padding: 26px 0 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+    box-sizing: border-box;
+}
+
+/* título de seção */
+.content h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* ========== GRIDS (OCUPAM TODO O LARGURA) ======== */
+.artists-grid, .albums-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 26px;
+    align-items: start;
+    align-content: start;
+    justify-items: stretch;
+    width: 100%;
+}
+
+/* ajustar em telas muito grandes (mais espaço para cards) */
+@media (min-width: 1600px){
+    .artists-grid, .albums-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+/* ========== CARDS ========== */
+.artist-card, .album-card {
+    background-color: var(--panel-2);
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.28s cubic-bezier(.2,.9,.3,1), background 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.artist-card:hover, .album-card:hover {
+    background-color: #282828;
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* imagens de artista circulares */
+.artist-card img {
+    width: 100%;
+    max-width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 14px auto;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    display: block;
+}
+
+/* imagens de álbum quadradas */
+.album-card img {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    object-fit: cover;
+}
+
+/* textos dos cards */
+.artist-card h3, .album-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 6px;
+    color: #fff;
+}
+.artist-card p, .album-card p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+/* botão play flutuante ao hover */
+.artist-card::after, .album-card::after {
+    content: "\f04b";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    bottom: 20px;
+    right: 18px;
+    background: var(--spot);
+    color: #000;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.28s cubic-bezier(.2,.9,.3,1);
+}
+.artist-card:hover::after, .album-card:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* destaque nos títulos ao passar o mouse */
+.artist-card h3:hover,
+.album-card h3:hover {
+    color: var(--spot);
+    transition: color 0.2s;
+}
+
+/* ========== BANNER PREMIUM ========== */
+.banner {
+    position: fixed;
+    bottom: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    background: linear-gradient(90deg, #AF2896, #509BF5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px;
+    z-index: 800;
+}
+.banner h2 { font-size: 16px; font-weight: 600; }
+.banner p { font-size: 12px; color: #fff; opacity: 0.95; }
+.banner button {
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    background: #fff;
+    transition: transform 0.18s;
+}
+.banner button:hover { transform: scale(1.03); }
+
+/* ========== ANIMAÇÕES ======== */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(18px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.56s ease forwards;
+}
+
+/* micro ajuste para boa experiência em telas pequenas */
+@media (max-width: 900px) {
+    .sidebar { display: none; } /* para facilitar teste mobile — remova se não quiser */
+    .header { padding: 12px; }
+    .search-bar { width: 320px; max-width: 70%; }
+    .artists-grid, .albums-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 18px; }
+}
+
+/* pequeno fallback para impedir que grid crie espaço vazio vertical */
+.artists-grid, .albums-grid { min-height: 1px; }
+
+/* garantir que elementos de formatação não causem overflow lateral */
+* { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }

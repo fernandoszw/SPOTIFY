@@ -1,0 +1,6 @@
+@ProjetoSpotify_HostAddress = http://localhost:5004
+
+GET {{ProjetoSpotify_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
