@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const albumsData = [
-        { name: 'White Noise (Sleep & Relaxation Sounds)', artist: 'Sleepy John', image: 'https://i1.sndcdn.com/artworks-1TOUHZYOHKwe-0-t500x500.jpg' },
+        { name: 'Check-In', artist: 'Jorge & Mateus', image: 'https://upload.wikimedia.org/wikipedia/pt/2/29/Jorge_%26_Mateus_-_2024_-_Check-In.jpeg' },
         { name: 'O Céu Explica Tudo (Ao Vivo)', artist: 'Henrique & Juliano', image: 'https://i.scdn.co/image/ab67616d0000b273bccf7bd68398aa587d3232fe' },
-        { name: 'Nada como um dia após o outro', artist: 'Racionais', image: 'https://akamai.sscdn.co/uploadfile/letras/albuns/b/2/0/6/19286.jpg' },
-        { name: 'HIT ME HARD AND SOFT', artist: 'Billie Eilish', image: 'https://cdn-images.dzcdn.net/images/cover/5d284b31cb9ddeb1a0c79aede5a94e1c/1900x1900-000000-81-0-0.jpg' },
-        { name: 'CAJU', artist: 'Liniker', image: 'https://images.genius.com/5d8ef1925d3db3ecf147cf37e8f8103a.1000x1000x1.jpg' },
-        { name: 'Escândalo Íntimo', artist: 'Luísa Sonza', image: 'https://s2-g1.glbimg.com/PdfwBwbI2SO9O3f8ZyKjZKFPUp8=/0x0:2048x2048/1008x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2023/q/q/A40hpHRceiB3Ewik8t2w/luisasonzaescandalointimocapa.jpg' },
+        { name: 'Escolhas', artist: 'Zé Neto & Cristiano', image: 'https://i.scdn.co/image/ab67616d0000b2733354017c31f2d6623236f571' },
+        { name: 'Feito à Mão (Volume 01)', artist: 'Gusttavo Lima', image: 'https://i.scdn.co/image/ab67616d0000b2732eb93ac3d1ed64ddd3fbeee4' },
+        { name: 'Viva', artist: 'Luan Santana', image: 'https://akamai.sscdn.co/uploadfile/letras/albuns/9/f/3/0/770571716823795.jpg' },
+        { name: 'Face a Face', artist: 'Mateus & Kauan', image: 'https://i.scdn.co/image/ab67616d0000b273c08f5933fbe44282925bc9e0' },
     ];
 
     const artistGrid = document.querySelector('.artists-grid');
