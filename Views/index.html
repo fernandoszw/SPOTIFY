@@ -71,22 +71,26 @@
                     <!-- Artistas via JS -->
                 </div>
 
-                <h2>Álbuns Populares</h2>
-                <div class="albums-grid">
-                    <!-- Álbuns via JS -->
-                </div>
+                <h2>Músicas Populares</h2>
+                    <div class="musicas-grid"></div>
             </section>
         </main>
     </div>
-
-    <!-- Banner -->
-    <div class="banner">
+<footer class="player-footer">
+    <div class="player-info">
+        <img id="player-cover" src="https://via.placeholder.com/50" alt="Capa" />
         <div>
-            <h2>Testar o Premium de Graça</h2>
-            <p>Increva-se para curtir músicas ilimitadas. Não perca!</p>
+            <h4 id="player-title">Nenhuma música tocando</h4>
+            <p id="player-artist">Artista</p>
         </div>
-        <button>Increva-se Grátis!</button>
     </div>
+    <div class="player-controls">
+        <button id="player-play"><i class="fa-solid fa-play"></i></button>
+        <button id="player-pause" style="display:none;"><i class="fa-solid fa-pause"></i></button>
+    </div>
+</footer>
+
 </body>
 <script src="js/script.js"></script>
+
 </html>

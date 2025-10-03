@@ -1,10 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ProjetoSpotify.Context;
+using ProjetoSpotify.DTOs;
 using ProjetoSpotify.Models;
+using ProjetoSpotify.Services;
+using Microsoft.AspNetCore.Mvc;
+using TagLib;
+using CRUD_MProjetoSpotifyusica.Services;
 
 namespace ProjetoSpotify.Controllers
 {
@@ -12,73 +13,108 @@ namespace ProjetoSpotify.Controllers
     [Route("api/[controller]")]
     public class MusicaController : ControllerBase
     {
-        private readonly SpotifyContext _context;
+        private readonly IMusicaService _musicaService;
 
-        public MusicaController(SpotifyContext context)
+        public MusicaController(IMusicaService musicaService)
         {
-            _context = context;
+            _musicaService = musicaService;
+        }
+        [HttpGet("ListSongs")]
+        public async Task<IActionResult> Listar()
+        {
+            var musicas = await _musicaService.GetAllAsync();
+            return Ok(musicas);
         }
 
-        [HttpPost]
-        public IActionResult Create(Musica musica)
+        [HttpGet("GetMusicByTitle/{titulo}")]
+        public async Task<IActionResult> ObterMusicaPorTitulo(string titulo)
         {
-            _context.Add(musica);
-            _context.SaveChanges();
-            return CreatedAtAction
-            (nameof(ObterPorId),
-            new { id = musica.Id },
-            musica
-            );
-        }
-
-     [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
-        {
-            var musica = _context.Musicas.Find(id);
-            if (musica == null)
-            {
-                return NotFound();
-            }
+            var musica = await _musicaService.GetByTituloAsync(titulo);
+            if (musica == null) return NotFound();
             return Ok(musica);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Atualizar(int id, Musica musica)
+        [HttpGet("GetMusicByArtist/{artista}")]
+        public async Task<IActionResult> ObterMusicaPorArtista(string artista)
         {
-            var musicaBanco = _context.Musicas.Find(id);
-            if (musicaBanco == null)
-            {
-                return NotFound("Nenhuma Música encontrada");
-            }
-
-            musicaBanco.NomeMusica = musica.NomeMusica;
-            musicaBanco.Duracao = musica.Duracao;
-            musicaBanco.AlbumId = musica.AlbumId;
-
-            _context.Musicas.Update(musicaBanco);
-            _context.SaveChanges();
-            return Ok(musicaBanco);
+            var musica = await _musicaService.GetByArtistaAsync(artista);
+            if (musica == null) return NotFound();
+            return Ok(musica);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
+        [HttpPut("UpdateMusicByTitle/{titulo}")]
+        public async Task<IActionResult> AtualizarMusica(string titulo, MusicaMetadataUpdateDto musicaAtualizada)
         {
-            var musicaBanco = _context.Musicas.Find(id);
-            if (musicaBanco == null)
+            try
             {
-                return NotFound("Nenhuma Música encontrada");
+                await _musicaService.UpdateMetadataAsync(titulo, musicaAtualizada);
             }
-
-            _context.Musicas.Remove(musicaBanco);
-            _context.SaveChanges();
-            return Ok(musicaBanco);
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
-        [HttpGet]
-        public IActionResult Listar()
+        [HttpDelete("DeleteMusicByTitle/{titulo}")]
+        public async Task<IActionResult> DeletarMusica(string titulo)
         {
-            var musicas = _context.Musicas.ToList();
-            return Ok(musicas);
+            try
+            {
+                await _musicaService.DeleteByTituloAsync(titulo);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
+
+
+        [HttpPost("AddSongWithFile")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AdicionarMusicaComArquivo([FromForm] MusicaUploadDto musicaDto)
+        {
+            int duracao = await _musicaService.CalcularDuracaoAsync(musicaDto.Arquivo);
+            byte[] arquivoComprimido;
+            using (var memoryStreamMusica = new MemoryStream())
+            {
+                await musicaDto.Arquivo.CopyToAsync(memoryStreamMusica);
+                arquivoComprimido = _musicaService.Compress(memoryStreamMusica.ToArray());
+            }
+
+            byte[] imagemCapaBytes = null;
+            if (musicaDto.Capa != null)
+            {
+                await using var msCapa = new MemoryStream();
+                await musicaDto.Capa.CopyToAsync(msCapa);
+                imagemCapaBytes = _musicaService.Compress(msCapa.ToArray());
+            }
+
+            var musicaSalva = await _musicaService.AddAsync(musicaDto);
+
+            return CreatedAtAction(nameof(ObterMusicaPorTitulo), new { titulo = musicaSalva.Titulo }, musicaSalva);
+        }
+
+
+        [HttpGet("GetCover/{id}")]
+        public async Task<IActionResult> GetCover(int id)
+        {
+            var capa = await _musicaService.GetCoverAsync(id);
+            if (capa == null) return NotFound();
+            return File(capa, "image/jpeg");
+        }
+
+        [HttpGet("PlayMusic/{id}")]
+        public async Task<IActionResult> TocarMusica(int id)
+        {
+            var (fileBytes, fileName) = await _musicaService.GetMusicFileAsync(id);
+            if (fileBytes == null) return NotFound();
+            var stream = new MemoryStream(fileBytes);
+            return new FileStreamResult(stream, "audio/mpeg")
+            {
+                FileDownloadName = fileName
+            };
         }
     }
 }
