@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\426141624\\Documents\\Spotify\\SPOTIFY\\ProjetoSpotify.csproj": {}
+    "C:\\Users\\User\\Documents\\SpotifyCerto\\SPOTIFY\\ProjetoSpotify.csproj": {}
   },
   "projects": {
-    "C:\\Users\\426141624\\Documents\\Spotify\\SPOTIFY\\ProjetoSpotify.csproj": {
+    "C:\\Users\\User\\Documents\\SpotifyCerto\\SPOTIFY\\ProjetoSpotify.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\426141624\\Documents\\Spotify\\SPOTIFY\\ProjetoSpotify.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\SpotifyCerto\\SPOTIFY\\ProjetoSpotify.csproj",
         "projectName": "ProjetoSpotify",
-        "projectPath": "C:\\Users\\426141624\\Documents\\Spotify\\SPOTIFY\\ProjetoSpotify.csproj",
-        "packagesPath": "C:\\Users\\426141624\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\426141624\\Documents\\Spotify\\SPOTIFY\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\SpotifyCerto\\SPOTIFY\\ProjetoSpotify.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\SpotifyCerto\\SPOTIFY\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\426141624\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -77,6 +78,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.16, 8.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -85,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

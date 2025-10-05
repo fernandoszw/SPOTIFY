@@ -63,7 +63,6 @@ body {
     align-items: center;
     gap: 10px;
     font-weight: 500;
-    cursor: pointer;
     transition: color 0.2s;
 }
 
@@ -196,7 +195,6 @@ main {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    cursor: pointer;
     display: inline-grid;
     place-items: center;
     transition: background 0.2s, transform 0.12s;
@@ -359,7 +357,6 @@ main {
 
 /* play button flutuante */
 .artist-card::after {
-    content: "\f04b";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
@@ -518,4 +515,28 @@ main {
     .musicas-grid {
         justify-content: center;
     }
+}
+
+/* Botão de logout no header */
+.logout-btn {
+    background-color: #1DB954; /* Verde Spotify */
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background-color: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
 }

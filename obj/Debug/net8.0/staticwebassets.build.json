@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "ExFxePlUpdk8SZjpJhtORR2NyjG/hu+EDHx4pHrIFCs=",
-  "Source": "ProjetoSpotify",
-  "BasePath": "_content/ProjetoSpotify",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"2DFgGq/mCx3LvLH6r9CcGnGiAvgyKOtNSqY03Q1bVj0=","Source":"ProjetoSpotify","BasePath":"_content/ProjetoSpotify","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
