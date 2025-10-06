@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify – Entre ou Cadastre-se</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <h1 class="logo">Spotify</h1>
+
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Senha" required minlength="6" />
+        <button type="submit" id="login-btn" class="login-btn">Entrar</button>
+      </form>
+
+      <div class="helper">
+        <a href="reset.html" id="forgot-password">Esqueceu a senha?</a>
+      </div>
+
+      <hr />
+
+      <button id="signup-btn" class="create-btn">Criar nova conta</button>
+
+      <div id="message" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>

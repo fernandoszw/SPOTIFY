@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify – Redefinir Senha</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2 class="logo">Spotify</h2>
+            <h3 class="reset-title">Redefinir senha</h3>
+            <p class="reset-subtitle">Digite seu e-mail para receber um link de redefinição.</p>
+
+            <input type="email" id="email-reset" placeholder="Email" required>
+            <button id="send-reset" class="login-btn">Enviar link</button>
+
+            <p id="message-reset" role="status" aria-live="polite"></p>
+
+            <hr>
+
+            <a href="login.html" class="back-link">⬅ Voltar para login</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCYDzcxDfN_WU-JqCg66O5KCaH112BkJq4",
+            authDomain: "spotify-6f703.firebaseapp.com",
+            projectId: "spotify-6f703",
+            storageBucket: "spotify-6f703.firebasestorage.app",
+            messagingSenderId: "87379432123",
+            appId: "1:87379432123:web:31ae94a05498fe54c00f9e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const emailInput = document.getElementById("email-reset");
+        const sendBtn = document.getElementById("send-reset");
+        const msg = document.getElementById("message-reset");
+
+        function setMessage(text, isError = true) {
+            msg.textContent = text;
+            msg.style.color = isError ? "#b00020" : "#1DB954";
+        }
+
+        sendBtn.addEventListener("click", async () => {
+            const email = emailInput.value.trim();
+            if (!email) return setMessage("Digite seu e-mail.");
+
+            sendBtn.disabled = true;
+            try {
+                await sendPasswordResetEmail(auth, email);
+                setMessage(`Link enviado! Verifique ${email}.`, false);
+            } catch (err) {
+                if (err.code.includes("auth/user-not-found")) setMessage("Usuário não encontrado.");
+                else if (err.code.includes("auth/invalid-email")) setMessage("E-mail inválido.");
+                else setMessage("Erro ao enviar link. Veja console.");
+            } finally {
+                sendBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

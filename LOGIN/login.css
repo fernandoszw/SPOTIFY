@@ -1,0 +1,204 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Circular, Helvetica, Arial, sans-serif;
+  background: #121212; /* fundo escuro */
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container centralizado */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background: linear-gradient(180deg, #121212 0%, #000 100%);
+}
+
+/* Logo Spotify */
+.logo {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1DB954;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+  user-select: none;
+}
+
+/* Caixa de login/reset */
+.login-box {
+  background: #181818;
+  padding: 40px 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  width: 380px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.9);
+}
+
+/* Inputs */
+.login-box input {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #282828;
+  border-radius: 30px;
+  font-size: 16px;
+  background: #121212;
+  color: #fff;
+  transition: border 0.3s ease, background 0.3s ease;
+}
+
+.login-box input::placeholder {
+  color: #b3b3b3;
+}
+
+.login-box input:focus {
+  outline: none;
+  border: 1px solid #1DB954;
+  background: #181818;
+}
+
+/* Botão principal (Entrar / Reset) */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1DB954;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+  background: #1ed760;
+  transform: scale(1.02);
+}
+
+/* Botão Criar Conta */
+.create-btn {
+  background: transparent;
+  border: 1px solid #b3b3b3;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.create-btn:hover {
+  border-color: #1DB954;
+  color: #1DB954;
+  transform: scale(1.02);
+}
+
+/* Link auxiliar (esqueci senha, voltar login) */
+.login-box a,
+.back-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #b3b3b3;
+  transition: color 0.3s ease;
+}
+
+.login-box a:hover,
+.back-link:hover {
+  color: #1DB954;
+}
+
+/* Linha divisória */
+.login-box hr {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid #282828;
+}
+
+/* Mensagens de erro/sucesso */
+#message,
+#message-reset {
+  margin-top: 12px;
+  font-size: 14px;
+  min-height: 20px;
+  transition: color 0.3s ease;
+}
+
+/* Página Home */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #181818;
+  padding: 20px 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  position: sticky;
+  top: 0;
+}
+
+.home-main {
+  text-align: center;
+  margin-top: 100px;
+  color: #fff;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.home-main h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.home-main p {
+  font-size: 16px;
+  color: #b3b3b3;
+}
+
+/* Botão Sair */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #b3b3b3;
+  border-radius: 30px;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  border-color: #1DB954;
+  color: #1DB954;
+  transform: scale(1.05);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
